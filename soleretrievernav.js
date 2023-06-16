@@ -16,21 +16,6 @@ fetch("https://api-v3.soleretriever.com/.netlify/functions/get-nav-content")
       (item) => item.sections.length > 0
     );
 
-    desktopContainer.addEventListener("mouseout", () => {
-      const allProductLists = document.querySelectorAll(
-        ".new-nav-page-desktop"
-      );
-      const allBrandTitles = document.querySelectorAll(".b-text-nav-desktop");
-      allBrandTitles.forEach((title) => {
-        title.classList.remove("hovered"); // Hide other product lists
-      });
-      allProductLists.forEach((list) => {
-        if (list !== productList) {
-          list.classList.add("hidden"); // Hide other product lists
-        }
-      });
-    });
-
     brandsDesktop.forEach((brand) => {
       const brandTitle = document.createElement("div");
       brandTitle.textContent = brand.name;
@@ -183,6 +168,19 @@ fetch("https://api-v3.soleretriever.com/.netlify/functions/get-nav-content")
             anchor.appendChild(itemText);
           });
         }
+      });
+    });
+
+    desktopContainer.addEventListener("mouseout", () => {
+      const allProductLists = document.querySelectorAll(
+        ".new-nav-page-desktop"
+      );
+      const allBrandTitles = document.querySelectorAll(".b-text-nav-desktop");
+      allBrandTitles.forEach((title) => {
+        title.classList.remove("hovered"); // Hide other product lists
+      });
+      allProductLists.forEach((list) => {
+        list.classList.add("hidden"); // Hide other product lists
       });
     });
   })
